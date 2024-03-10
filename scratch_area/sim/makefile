@@ -1,36 +1,17 @@
-
-#TEST_NAME=w_r_test
-#TEST_NAME=reset_test
-#TEST_NAME=sanity_test
-#TEST_NAME=mul_w_test
-#TEST_NAME=wait_test
-#TEST_NAME=size_test
-#TEST_NAME=size0_test
-#TEST_NAME=size1_test
-#TEST_NAME=idle_test
-
-MODULE_PATH=../../../ahb_make
-
-SEED=10
 DUMP_OPTS=DUMP_ON
 
-DUT_DIR=$(MODULE_PATH)/project_area/design/rtl
-
-DUT_FILE=$(DUT_DIR)/cmsdk_ahb_ram.v
-
-TB_DIR=$(MODULE_PATH)/project_area/verif/tb
-AGENT_DIR=$(MODULE_PATH)/project_area/verif/agent
-SEQ_DIR=$(MODULE_PATH)/project_area/verif/seqs
-TEST_DIR=$(MODULE_PATH)/project_area/verif/test
-
+DUT_FILE=$(RTL_DIR)/cmsdk_ahb_ram.v
+TB_DIR=$(VRF_DIR)/tb
+AGENT_DIR=$(VRF_DIR)/agent
+SEQ_DIR=$(VRF_DIR)/seqs
 TOP_FILE=$(TB_DIR)/top.sv
+TEST_DIR=$(VRF_DIR)/test
 
-LOG_DIR=$(MODULE_PATH)/scratch_area/log
-SIM_DIR=$(MODULE_PATH)/scratch_area/sim
+TEST_NAME=""
 SIM_OPTS=""
+LOG_NAME=""
 
-INC_DIR=+incdir+$(DUT_DIR) +incdir+$(AGENT_DIR) +incdir+$(AGENT_DIR)/agent  +incdir+$(TEST_DIR) +incdir+$(SEQ_DIR) +incdir+$(TB_DIR) +incdir+$(LOG_DIR) +incdir+$(SIM_DIR)
-
+INC_DIR=+incdir+$(RTL_DIR) +incdir+$(AGENT_DIR) +incdir+$(AGENT_DIR)/ahb_agent +incdir+$(TEST_DIR) +incdir+$(SEQ_DIR)  +incdir+$(TB_DIR) +incdir+$(LOG_DIR) +incdir+$(SIM_DIR)
 
 logo_print: 
 	cat EXPOLOG_logo.txt
@@ -47,17 +28,43 @@ vsim_example:
 run_example:	comp sim
 
 sim: 
-	vsim -c -debugDB $(SIM_OPTS) -cvgperinstance -voptargs=+acc -coverage -voptargs="+cover=all" -do "coverage save -onexit xyz.ucdb;do $(SIM_DIR)/wave.do; run -all; exit" work.tb_top
+	vsim -c -debugDB +UVM_TESTNAME=$(TEST_NAME) $(SIM_OPTS) -l $(TEST_NAME).log -cvgperinstance -voptargs=+acc -coverage -voptargs="+cover=all" -do "coverage save -onexit $(TEST_NAME).ucdb; do $(SIM_DIR)/wave.do; run -all; exit" work.tb_top
+	#mv $(TEST_NAME).* $(LOG_DIR)/ 
+	cat $(TEST_NAME).log > temp_log 
+	cat EXPOLOG_logo.txt > $(TEST_NAME).log
+	cat temp_log >> $(TEST_NAME).log
+	rm temp_log
 
-vsim_gui: 
-	vsim -debugDB $(SIM_OPTS) -do "do $(SIM_DIR)/wave.do; run -all; exit" work.tb_top
+sim_regress:
+	vsim -c -debugDB $(SIM_OPTS) -l $(LOG_NAME).log -cvgperinstance -voptargs=+acc -coverage -voptargs="+cover=all" -do "coverage save -onexit $(LOG_NAME).ucdb;run -all; exit"   work.tb_top
+	cat $(LOG_NAME).log > temp_log 
+	cat EXPOLOG_logo.txt > $(LOG_NAME).log
+	cat temp_log >> $(LOG_NAME).log
+	rm temp_log
+
 
 run: logo_print comp sim
 
-run_gui: logo_print comp vsim_gui
+
+run_regress: logo_print comp sim_regress
 
 wave: 
 	vsim -view $(SIM_DIR)/vsim.wlf &
+
+
+vsim_gui: 
+	vsim -debugDB +UVM_TESTNAME=$(TEST_NAME) $(SIM_OPTS) -do "do $(SIM_DIR)/wave.do; run -all; exit" work.tb_top
+
+run_gui: logo_print comp vsim_gui
+
+clean:
+	rm -rf work
+	rm vsim.*
+	rm *.log
+	rm *.ucdb
+
+clean_regress:
+	rm -rf spi_regress_*
 
 #run_reg: comp lsb_fst_data_test msb_fst_data_test Rx_raising_Tx_falling_test Rx_falling_Tx_raising_test
 
@@ -65,6 +72,5 @@ wave:
 #	vcover merge -64 merge_ucdb.ucdb *.ucdb
 #wave:
 #	vsim -view vsim.wlf
-
 
 
