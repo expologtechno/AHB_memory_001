@@ -23,7 +23,7 @@ begin
 	for(int i=0; i<4; i++)begin
 			start_item(trans);
 			assert(trans.randomize() with {  trans.write == 1'b1;
-							trans.datalen == 3'h1;  
+							trans.datalen == 16'h1;  
 		       					trans.addr[0] == i; 
 							trans.size    == 3'h0; 
 							trans.trans   == 2'b10; 
@@ -33,7 +33,7 @@ begin
 
 		start_item(trans);
 			assert(trans.randomize() with {  trans.write == 1'b0;
-							trans.datalen == 3'h1;  
+							trans.datalen == 16'h1;  
 		       					trans.addr[0] == i; 
 							trans.size    == 3'h0; 
 							trans.trans   == 2'b10; 

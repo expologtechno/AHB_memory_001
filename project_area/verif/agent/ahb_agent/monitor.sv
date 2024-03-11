@@ -97,10 +97,13 @@ uvm_analysis_port#(ahb_transaction) analysis_port;
   covergroup ahb_cg;
    option.per_instance=1;
 
- /* ADDR:coverpoint trans.addr
+  ADDR_1: coverpoint trans.addr[0]
   {
-	bins addr_bin[0:10][0:65535] = { addr[i][j] with (i, j) using (i, j); }
-  }*/
+	bins addr_bin1[5] = {[0:65535]};
+	//bins addr_bin2[]= {[16385:32768]};
+	//bins addr_bin3[]= {[32769:49152]};
+	//bins addr_bin4[]= {[49153:65536]};
+  }
   WRITE:coverpoint trans.write
   {
    	bins low={0};

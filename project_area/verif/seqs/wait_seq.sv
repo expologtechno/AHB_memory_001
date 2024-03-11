@@ -84,7 +84,19 @@ task wait_seq::body();
 				trans.datalen == 3'h1;  
 		       		trans.addr[0] == 16'h1C; 
 				trans.size  == 3'h2; 
-				trans.trans == 2'b10; 
+				trans.trans == 2'b11; 
+				trans.ready == 1'b0;});
+		finish_item(trans);
+		get_response(rsp);
+
+
+		start_item(trans);
+			assert(trans.randomize() with {  
+				trans.write == 1'b1; 
+				trans.datalen == 3'h1;  
+		       		trans.addr[0] == 16'h1C; 
+				trans.size  == 3'h2; 
+				trans.trans == 2'b11; 
 				trans.ready == 1'b1;});
 		finish_item(trans);
 		get_response(rsp);
@@ -95,7 +107,7 @@ task wait_seq::body();
 				trans.datalen == 3'h1;  
 		       		trans.addr[0] == 16'h1C; 
 				trans.size  == 3'h2; 
-				trans.trans == 2'b10; 
+				trans.trans == 2'b11; 
 				trans.ready == 1'b1;});
 		finish_item(trans);
 		get_response(rsp);
