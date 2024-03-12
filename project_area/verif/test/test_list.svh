@@ -12,3 +12,4 @@
 `include "trans_test.sv"
 `include "base_test.sv"
 `include "arb_test.sv"
+`include "error_test.sv"

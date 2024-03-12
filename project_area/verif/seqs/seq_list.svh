@@ -10,3 +10,4 @@
 `include "mem_full_seq.sv"
 `include "size1_seq.sv"
 `include "trans_seq.sv"
+`include "error_seq.sv"

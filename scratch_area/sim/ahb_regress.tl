@@ -9,3 +9,5 @@ trans_test 		1 	+UVM_TESTNAME=trans_test
 wait_test 		1 	+UVM_TESTNAME=wait_test
 idle_test 		1 	+UVM_TESTNAME=idle_test
 mem_full_test 		3 	+UVM_TESTNAME=mem_full_test
+#error detection
+error_test 		1 	+UVM_TESTNAME=error_test

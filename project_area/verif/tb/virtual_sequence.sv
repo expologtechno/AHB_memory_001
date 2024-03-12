@@ -316,3 +316,31 @@ task  body();
   $display(" trans sequence task1 body");	
 endtask  
 endclass
+
+
+
+
+////---------------------------------------------------------------------------------------//
+///************************* error_sequence************************************************/
+//---------------------------------------------------------------------------------------//
+class virt_error_seq extends virtual_sequence; 
+  `uvm_object_utils(virt_error_seq)
+  
+ // virtual_sequencer v_seqr;
+error_seq error_seq_h;
+
+
+/************** constructor*******************/
+function new(string name="virt_error_seq");
+  super.new(name);
+endfunction	
+
+/****************** body**************************/
+task  body();
+  super.body();
+  $display(" error sequence task body");
+  error_seq_h=error_seq::type_id::create("error_seq_h");  
+  error_seq_h.start(sequencer);
+  $display(" error sequence task1 body");	
+endtask  
+endclass
