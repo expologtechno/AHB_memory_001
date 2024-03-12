@@ -35,7 +35,7 @@ task idle_test::run_phase(uvm_phase phase);
   phase.raise_objection(this);
     v_idle_seq_h = virt_idle_seq::type_id::create("v_idle_seq_h");
     v_idle_seq_h.start(env.v_seqr);
-    #100;
+    #500;
   phase.drop_objection(this);
 
 endtask

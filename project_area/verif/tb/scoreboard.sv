@@ -270,16 +270,16 @@ analy_fifo.get(trans);
 				end
 			end
 			else if(trans.size == 1)begin
-					if(trans.addr[1])begin
+					if(trans.addr[0][1])begin
 						if(sc_mem[trans.addr[0]] == trans.rdata[0][23:16] && sc_mem[trans.addr[0]+1] == trans.rdata[0][31:24]) begin
-						`uvm_info(get_type_name(),$sformatf("------ :: SCOREBOARD_UPPERWORD_DATAMATCH       :: ------"),UVM_LOW) //byte 3
+						`uvm_info(get_type_name(),$sformatf("------ :: SCOREBOARD_UPPERWORD_DATAMATCH       :: ------"),UVM_LOW) //upper word
           	     				`uvm_info(get_type_name(),$sformatf(" Addr :%0h  Expected Data: %0h Actual Data: %0h",trans.addr[0], sc_mem[trans.addr[0]],trans.rdata[0][23:16]),UVM_LOW)
           	     				`uvm_info(get_type_name(),$sformatf(" Addr :%0h  Expected Data: %0h Actual Data: %0h",trans.addr[0], sc_mem[trans.addr[0]+1],trans.rdata[0][31:24]),UVM_LOW)
 						end
 					end
 					else begin
 						if(sc_mem[trans.addr[0]] == trans.rdata[0][7:0] && sc_mem[trans.addr[0]+1] == trans.rdata[0][15:8]) begin
-						`uvm_info(get_type_name(),$sformatf("------ :: SCOREBOARD_LOWERWORD_DATAMATCH     :: ------"),UVM_LOW) //byte 3
+						`uvm_info(get_type_name(),$sformatf("------ :: SCOREBOARD_LOWERWORD_DATAMATCH     :: ------"),UVM_LOW) //lower word
           	     				`uvm_info(get_type_name(),$sformatf(" Addr :%0h  Expected Data: %0h Actual Data: %0h",trans.addr[0], sc_mem[trans.addr[0]],trans.rdata[0][7:0]),UVM_LOW)
           	     				`uvm_info(get_type_name(),$sformatf(" Addr :%0h  Expected Data: %0h Actual Data: %0h",trans.addr[0], sc_mem[trans.addr[0]+1],trans.rdata[0][15:8]),UVM_LOW)
 						end
@@ -287,7 +287,7 @@ analy_fifo.get(trans);
 			end	
 			else if(trans.size == 2 || trans.size ==3 || trans.size == 4 || trans.size ==5 || trans.size == 6 || trans.size ==7  )begin
 					if(sc_mem[trans.addr[0]] == trans.rdata[0][7:0] && sc_mem[trans.addr[0]+1] == trans.rdata[0][15:8] && sc_mem[trans.addr[0]+2] == trans.rdata[0][23:16] && sc_mem[trans.addr[0]+3] == trans.rdata[0][31:24] ) begin
-						`uvm_info(get_type_name(),$sformatf("------ :: SCOREBOARD__WHOLE_DATAMATCH     :: ------"),UVM_LOW) //byte 3
+						`uvm_info(get_type_name(),$sformatf("------ :: SCOREBOARD__WHOLE_DATAMATCH     :: ------"),UVM_LOW) //word
           	     				`uvm_info(get_type_name(),$sformatf(" Addr :%0h  Expected Data: %0h Actual Data: %0h",trans.addr[0], sc_mem[trans.addr[0]],trans.rdata[0][7:0]),UVM_LOW)
           	     				`uvm_info(get_type_name(),$sformatf(" Addr :%0h  Expected Data: %0h Actual Data: %0h",trans.addr[0], sc_mem[trans.addr[0]+1],trans.rdata[0][15:8]),UVM_LOW)
           	     				`uvm_info(get_type_name(),$sformatf(" Addr :%0h  Expected Data: %0h Actual Data: %0h",trans.addr[0], sc_mem[trans.addr[0]+2],trans.rdata[0][23:16]),UVM_LOW)

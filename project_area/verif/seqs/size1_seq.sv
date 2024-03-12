@@ -20,7 +20,7 @@ begin
 	
 
 
-		for(int i=0; i<4; i = i+2)begin
+	for(int i=0; i<4; i = i+2)begin
 		start_item(trans);
 			assert(trans.randomize() with {  trans.write == 1'b1;
 							trans.datalen == 16'h1;  
@@ -41,6 +41,72 @@ begin
 		finish_item(trans);
 		get_response(rsp);
 	end
+
+	/*start_item(trans);
+			assert(trans.randomize() with {  trans.write == 1'b1;
+							trans.datalen == 16'h1;  
+		       					trans.addr[0] == 16'h00; 
+							trans.size    == 3'h1; 
+							trans.trans   == 2'b10; 
+							trans.ready   == 1'b1;});
+		finish_item(trans);
+		get_response(rsp);
+
+		start_item(trans);
+			assert(trans.randomize() with {  trans.write == 1'b0;
+							trans.datalen == 16'h1;  
+		       					trans.addr[0] == 16'h00; 
+							trans.size    == 3'h1; 
+							trans.trans   == 2'b10; 
+							trans.ready   == 1'b1;});
+		finish_item(trans);
+		get_response(rsp);
+
+			start_item(trans);
+			assert(trans.randomize() with {  trans.write == 1'b1;
+							trans.datalen == 16'h1;  
+		       					trans.addr[0] == 16'h2; 
+							trans.size    == 3'h1; 
+							trans.trans   == 2'b10; 
+							trans.ready   == 1'b1;});
+		finish_item(trans);
+		get_response(rsp);
+
+		start_item(trans);
+			assert(trans.randomize() with {  trans.write == 1'b0;
+							trans.datalen == 16'h1;  
+		       					trans.addr[0] == 16'h2; 
+							trans.size    == 3'h1; 
+							trans.trans   == 2'b10; 
+							trans.ready   == 1'b1;});
+		finish_item(trans);
+		get_response(rsp);
+
+			start_item(trans);
+			assert(trans.randomize() with {  trans.write == 1'b1;
+							trans.datalen == 16'h1;  
+		       					trans.addr[0] == 16'h3; 
+							trans.size    == 3'h1; 
+							trans.trans   == 2'b10; 
+							trans.ready   == 1'b1;});
+		finish_item(trans);
+		get_response(rsp);
+
+		start_item(trans);
+			assert(trans.randomize() with {  trans.write == 1'b0;
+							trans.datalen == 16'h1;  
+		       					trans.addr[0] == 16'h3; 
+							trans.size    == 3'h1; 
+							trans.trans   == 2'b10; 
+							trans.ready   == 1'b1;});
+		finish_item(trans);
+		get_response(rsp);*/
+
+
+
+
+
+
 end	
 	
 endtask

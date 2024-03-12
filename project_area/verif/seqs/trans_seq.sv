@@ -18,8 +18,9 @@ begin
 
 
 	       
-		for(int i=0; i<4; i = i+4)begin
-			for(int j=0; j<4; j++)begin
+		for(int i=0, j=0; i<30; i=i+4, j=j+1)begin
+			//for(int j=0; j<4; j++)begin
+			j=j%4;
 		start_item(trans);
 			assert(trans.randomize() with {  trans.write == 1'b1;
 							trans.datalen == 3'h1;  
@@ -39,7 +40,7 @@ begin
 							trans.ready   == 1'b1;});
 		finish_item(trans);
 		get_response(rsp);
-			end
+			//end
 		end
 
 

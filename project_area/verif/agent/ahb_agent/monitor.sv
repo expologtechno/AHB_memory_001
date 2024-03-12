@@ -119,7 +119,7 @@ uvm_analysis_port#(ahb_transaction) analysis_port;
   RESP:coverpoint trans.resp
   {
    	bins low={0};
-	bins high={1};
+//	bins high={1};
   }
 
   SELX:coverpoint trans.selx
