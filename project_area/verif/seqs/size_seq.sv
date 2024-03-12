@@ -16,6 +16,7 @@ endfunction
 
 //-----------------------task body------------------------------
 task size_seq::body();
+	`uvm_info(get_name(),$sformatf("SIZE_STARTED"),UVM_LOW)
 begin
 		trans=ahb_transaction::type_id::create("trans");
 	
@@ -48,5 +49,6 @@ begin
 
 
 end	
+	`uvm_info(get_name(),$sformatf("SIZE_ENDED"),UVM_LOW)
 	
 endtask

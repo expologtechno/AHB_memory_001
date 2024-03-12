@@ -10,3 +10,5 @@
 `include "size1_test.sv"
 `include "mem_full_test.sv"
 `include "trans_test.sv"
+`include "base_test.sv"
+`include "arb_test.sv"
