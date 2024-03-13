@@ -53,7 +53,7 @@ forever begin
 		else begin
 				seq_item_port.get_next_item(trans);
 				for(int i=0; i<trans.datalen; i++) begin
-					wait(intf_h.hreadyout);
+				//	wait(intf_h.hreadyout);
 					if(trans.write)begin
 							intf_h.cb_tb.hready <= trans.ready;
 							intf_h.cb_tb.hsize  <= trans.size;

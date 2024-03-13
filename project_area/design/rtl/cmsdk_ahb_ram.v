@@ -50,8 +50,8 @@ module cmsdk_ahb_ram #(
   parameter MEM_TYPE = 1, // Memory Type : Default to behavioral memory
   parameter AW       = 16,// Address width
   parameter filename = "",
-  parameter WS_N     = 4, // First access wait state
-  parameter WS_S     = 4  // Subsequent access wait state
+  parameter WS_N     = 0, // First access wait state
+  parameter WS_S     = 0  // Subsequent access wait state
  )
  (
   input  wire          HCLK,    // Clock

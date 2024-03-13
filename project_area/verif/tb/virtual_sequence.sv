@@ -344,3 +344,29 @@ task  body();
   $display(" error sequence task1 body");	
 endtask  
 endclass
+
+
+////---------------------------------------------------------------------------------------//
+///************************* dummy_sequence************************************************/
+//---------------------------------------------------------------------------------------//
+class virt_dummy_seq extends virtual_sequence; 
+  `uvm_object_utils(virt_dummy_seq)
+  
+ // virtual_sequencer v_seqr;
+dummy_seq dummy_seq_h;
+
+
+/************** constructor*******************/
+function new(string name="virt_dummy_seq");
+  super.new(name);
+endfunction	
+
+/****************** body**************************/
+task  body();
+  super.body();
+  $display(" dummy sequence task body");
+  dummy_seq_h=dummy_seq::type_id::create("dummy_seq_h");  
+  dummy_seq_h.start(sequencer);
+  $display(" dummy sequence task1 body");	
+endtask  
+endclass
