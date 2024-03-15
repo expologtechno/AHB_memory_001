@@ -6,7 +6,7 @@ class arb_test extends base_test;
   endfunction
   
   task cfg_arb_mode;
-    env.age.sequencer.set_arbitration(SEQ_ARB_FIFO);
+    env.age.sequencer.set_arbitration(SEQ_ARB_STRICT_FIFO);
   endtask
 endclass
 

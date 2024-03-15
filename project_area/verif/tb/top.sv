@@ -20,6 +20,13 @@ module tb_top;
     intf_h.hresetn=0;
     #50;
     intf_h.hresetn=1;
+
+    if ($test$plusargs("TOGGLE_RESET"))begin
+	    #2;
+    intf_h.hresetn=0;
+    #10;
+    intf_h.hresetn=1;
+    end
  end
 
   ahb_intf    intf_h( hclk );

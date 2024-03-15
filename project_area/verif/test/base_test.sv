@@ -43,31 +43,6 @@ endtask
 
 
 
-
-//*********** run phase****************
-
-/*task run_phase(uvm_phase phase);
- string s_name;
-    super.run_phase(phase);
-    phase.raise_objection(this);
-    cfg_arb_mode();
-    `uvm_info(get_name, $sformatf("Arbitration mode = %s", env.age.sequencer.get_arbitration()), UVM_LOW);
-    foreach(m_seq[i]) begin
-      automatic int j = i;
-      fork
-      begin
-        s_name = $sformatf("seq[%0d]", j);
-        m_seq[j] = ahb_sequence::type_id::create(s_name);    
-        m_seq[j].start(env.age.sequencer, .this_priority((j+1)*100)); // priority is mentioned as 100, 200, 300, 400, 500 for j = 0,1,2,3,4
-      end
-      join_none
-    end
-    wait fork;
-    
-    phase.drop_objection(this);
-endtask*/
-
-
 task run_phase(uvm_phase phase);
     super.run_phase(phase);
     phase.raise_objection(this);
@@ -84,9 +59,9 @@ fork
        //seq0.start(env.age.sequencer); 
        //seq1.start(env.age.sequencer); 
 //if ($test$plusargs("WITH_PRI")) begin
-        seq.start(env.age.sequencer, .this_priority(400)); 
+       seq.start(env.age.sequencer, .this_priority(600)); 
 	seq0.start(env.age.sequencer, .this_priority(800)); 
-	seq1.start(env.age.sequencer, .this_priority(600)); 
+	seq1.start(env.age.sequencer, .this_priority(400)); 
 //end
 //end
 join

@@ -35,7 +35,7 @@ task reset_test::run_phase(uvm_phase phase);
   phase.raise_objection(this);
     v_reset_seq_h=virt_reset_seq::type_id::create("v_reset_seq_h");
     v_reset_seq_h.start(env.v_seqr);
-    //#100;
+    #200;
     phase.phase_done.set_drain_time(this, 100);
   phase.drop_objection(this);
 

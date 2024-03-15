@@ -97,12 +97,9 @@ uvm_analysis_port#(ahb_transaction) analysis_port;
   covergroup ahb_cg;
    option.per_instance=1;
 
-  ADDR_1: coverpoint trans.addr[0]
+  MEM_ADDR: coverpoint trans.addr[0]
   {
 	bins addr_bin1[5] = {[0:65535]};
-	//bins addr_bin2[]= {[16385:32768]};
-	//bins addr_bin3[]= {[32769:49152]};
-	//bins addr_bin4[]= {[49153:65536]};
   }
   WRITE:coverpoint trans.write
   {
@@ -110,54 +107,39 @@ uvm_analysis_port#(ahb_transaction) analysis_port;
 	bins high={1};
     }
 
-  READYOUT:coverpoint trans.readyout
-  {
-	bins high={1};
-   	bins low={0};
-  }
-
-  RESP:coverpoint trans.resp
-  {
-   	bins low={0};
-//	bins high={1};
-  }
-
-  SELX:coverpoint trans.selx
-  {
-   	bins low={0};
-	bins high={1};
-  }
 
   SIZE:coverpoint trans.size
   {
     	bins c1={0};
     	bins c2={1};
     	bins c3={2};
-    	bins c4={3};
+    	//bins c4={3}; //DB not supported
   }
 
-  TRANS:coverpoint trans.trans
+  TYPE_TRANS:coverpoint trans.trans
   {
     	bins d1={0};
     	bins d2={1};
     	bins d3={2};
     	bins d4={3};
   }
-  READY:coverpoint trans.ready
-  {
-   	bins low={0};
-	bins high={1};
-  }
+ 
+MEM_DATA:coverpoint trans.wdata[0]
+{
+	bins data_bin[5] = {[1:32'hFFFFFFFE]};
+	bins bin_0 = {32'h00000000};
+	bins bin_f = {32'hFFFFFFFF};
+}
 
- // ahb_cg cg =new();
-  //foreach (trans.addr[i])begin
-  //cg[i].sample(addr[i])
-  //
-
-
+MEM_READ_DATA:coverpoint trans.rdata[0]
+{
+	bins rdata_bin[5] = {[1:32'hFFFFFFFE]};
+	bins rbin_0 = {32'h00000000};
+	bins rbin_f_ = {32'hFFFFFFFF};
+}
   
-  //AWADDR_WDATA:cross AWADDR,WRITE_DATA;
-  //ARADDR_RDATA:cross ARADDR,READ_DATA;
+  AWADDR_WDATA:cross MEM_ADDR,MEM_DATA;
+  ARADDR_RDATA:cross MEM_ADDR,MEM_READ_DATA;
 
 endgroup : ahb_cg
   
