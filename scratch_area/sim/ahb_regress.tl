@@ -1,13 +1,13 @@
-w_r_test 		1 	+UVM_TESTNAME=w_r_test
+w_r_test 		10 	+UVM_TESTNAME=w_r_test
 size_test 		1 	+UVM_TESTNAME=size_test
 size0_test 		1 	+UVM_TESTNAME=size0_test
 size1_test 		1 	+UVM_TESTNAME=size1_test
 sanity_test 		1 	+UVM_TESTNAME=sanity_test
-reset_test 		1 	+UVM_TESTNAME=reset_test
+reset_test 		1 	+UVM_TESTNAME=reset_test +TOGGLE_RESET
 mul_w_test 		1 	+UVM_TESTNAME=mul_w_test
 trans_test 		1 	+UVM_TESTNAME=trans_test
 wait_test 		1 	+UVM_TESTNAME=wait_test
 idle_test 		1 	+UVM_TESTNAME=idle_test
-mem_full_test 		3 	+UVM_TESTNAME=mem_full_test
-#error detection
+mem_full_test 		6 	+UVM_TESTNAME=mem_full_test
 error_test 		1 	+UVM_TESTNAME=error_test
+#dummy_test 		1 	+UVM_TESTNAME=dummy_test
