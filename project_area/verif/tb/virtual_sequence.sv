@@ -370,3 +370,32 @@ task  body();
   $display(" dummy sequence task1 body");	
 endtask  
 endclass
+
+
+
+//---------------------------------------------------------------------------------------//
+/************************* wr_constraint_sequence************************************************/
+//---------------------------------------------------------------------------------------//
+class virt_wr_con_sequence extends virtual_sequence; 
+  `uvm_object_utils(virt_wr_con_sequence)
+  
+ // virtual_sequencer v_seqr;
+  w_r_constraint_seq w_r_constraint_seq_h;
+
+
+
+/************** constructor*******************/
+function new(string name="virt_wr_con_sequence");
+  super.new(name);
+endfunction	
+
+/****************** body**************************/
+task  body();
+  super.body();
+  $display(" sequence task body");	
+  w_r_constraint_seq_h=w_r_constraint_seq::type_id::create("w_r_constraint_seq_h");
+  w_r_constraint_seq_h.start(sequencer);
+  $display(" sequence task1 body");	
+endtask  
+endclass
+

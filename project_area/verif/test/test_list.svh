@@ -14,3 +14,4 @@
 `include "arb_test.sv"
 `include "error_test.sv"
 `include "dummy_test.sv"
+`include "w_r_constraint_test.sv"

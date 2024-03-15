@@ -1,8 +1,3 @@
-//`include "cmsdk_ahb_memory_models_defs.v"
-//`include "cmsdk_ahb_ram.v"
-//`include "cmsdk_ahb_ram_beh.v"
-//`include "pack.sv"
-//`include "interface.sv"
 `include "uvm_macros.svh"
 import uvm_pkg::*;
 

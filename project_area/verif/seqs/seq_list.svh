@@ -12,3 +12,4 @@
 `include "trans_seq.sv"
 `include "error_seq.sv"
 `include "dummy_seq.sv"
+`include "w_r_constraint_seq.sv"
