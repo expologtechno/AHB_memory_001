@@ -11,3 +11,4 @@ idle_test 		1 	+UVM_TESTNAME=idle_test
 mem_full_test 		6 	+UVM_TESTNAME=mem_full_test
 error_test 		1 	+UVM_TESTNAME=error_test
 #dummy_test 		1 	+UVM_TESTNAME=dummy_test
+#w_r_constraint_test 	10 	+UVM_TESTNAME=w_r_constraint_test +CONSTRAINT
