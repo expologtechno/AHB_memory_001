@@ -99,7 +99,7 @@ uvm_analysis_port#(ahb_transaction) analysis_port;
 
   MEM_ADDR: coverpoint trans.addr[0]
   {
-	bins addr_bin1[5] = {[0:65535]};
+	bins addr_bin[5] = {[0:65535]};
   }
   WRITE:coverpoint trans.write
   {
@@ -195,13 +195,13 @@ task run_phase(uvm_phase phase);
 					end
 				else
 					begin
-					trans.write    =  intf_h.mon_cb.hwrite;
-					trans.ready    =  intf_h.mon_cb.hready;
-					trans.size     =  intf_h.mon_cb.hsize;
-					trans.trans    =  intf_h.mon_cb.htrans;
-					trans.addr[0]   =  intf_h.mon_cb.haddr;
-					@(negedge intf_h.hclk);
-					trans.rdata[0] =  intf_h.mon_cb.hrdata;
+						trans.write    =  intf_h.mon_cb.hwrite;
+						trans.ready    =  intf_h.mon_cb.hready;
+						trans.size     =  intf_h.mon_cb.hsize;
+						trans.trans    =  intf_h.mon_cb.htrans;
+						trans.addr[0]   =  intf_h.mon_cb.haddr;
+						@(negedge intf_h.hclk);
+						trans.rdata[0] =  intf_h.mon_cb.hrdata;
 					end
 			analysis_port.write(trans);
 				$display($time,"=================================================================== MONITOR_DISPLAY_STARTED  ========================================\n" );

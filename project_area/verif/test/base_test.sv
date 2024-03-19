@@ -55,17 +55,14 @@ task run_phase(uvm_phase phase);
 fork
 //begin
 
-        //seq.start(env.age.sequencer);
-       //seq0.start(env.age.sequencer); 
-       //seq1.start(env.age.sequencer); 
-//if ($test$plusargs("WITH_PRI")) begin
-       seq.start(env.age.sequencer, .this_priority(600)); 
-	seq0.start(env.age.sequencer, .this_priority(800)); 
-	seq1.start(env.age.sequencer, .this_priority(400)); 
-//end
+      // seq.start(env.age.sequencer);
+      // seq0.start(env.age.sequencer); 
+      // seq1.start(env.age.sequencer); 
+seq.start(env.age.sequencer, .this_priority(600)); 
+seq0.start(env.age.sequencer, .this_priority(800)); 
+seq1.start(env.age.sequencer, .this_priority(400)); 
 //end
 join
-//wait fork;
     phase.drop_objection(this);
 endtask
 

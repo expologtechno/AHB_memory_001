@@ -27,7 +27,7 @@ class ahb_transaction extends uvm_sequence_item;
 	//constraint wdata_cov { wdata[0] in;}
 
 
-    if ($test$plusargs("CONSTRAINT"))begin
+   /* if($test$plusargs("CONSTRAINT"))begin
 	constraint addr_constraints {
     		addr[0] inside {[0:13000],[13001:26000],[26001:38000],[38001:54000],[54001:65536]};
     		addr[0] dist { 	[0:7000] 	:= 4,  
@@ -41,7 +41,7 @@ class ahb_transaction extends uvm_sequence_item;
                 		[54001:60000]  	:= 4,
                 		[60001:65535] 	:= 4 };
   		}
-	 end
+	 end*/
 //--------------------------constructor--------------------------------	
 function new(string name="ahb_transaction");
 super.new(name);
